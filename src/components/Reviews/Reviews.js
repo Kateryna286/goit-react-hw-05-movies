@@ -12,13 +12,19 @@ export default function Reviews({ movieId }) {
 
   return (
     <ul>
-      {reviews &&
-        reviews.map(review => (
-          <li key={review.id}>
-            {review.author}
-            <div>{review.content}</div>
-          </li>
-        ))}
+      {reviews && reviews.length > 0 ? (
+        reviews.map(
+          review =>
+            (
+              <li key={review.id}>
+                {review.author}
+                <div>{review.content}</div>
+              </li>
+            ) ?? <div>Reviews not found</div>,
+        )
+      ) : (
+        <div>We don't have any reviews for this movie</div>
+      )}
     </ul>
   );
 }

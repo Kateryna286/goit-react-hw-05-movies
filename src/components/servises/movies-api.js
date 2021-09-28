@@ -1,11 +1,9 @@
-const BASE_URL = 'https://api.themoviedb.org/3/';
+const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'a5025e9c048c765a07b555d910269819';
 
-async function fetchWithErrorHandling(url = '', config = {}) {
-  const response = await fetch(url, config);
-  return response.ok
-    ? await response.json()
-    : Promise.reject(new Error('Not found'));
+async function fetchWithErrorHandling(url = '') {
+  const response = await fetch(url);
+  return response.json();
 }
 
 // список самых популярных фильмов на сегодня для создания коллекции на главной странице
@@ -20,7 +18,7 @@ export function fetchTrendingMovies() {
 // поиск кинофильма по ключевому слову на странице фильмов
 // https://api.themoviedb.org/3/search/movie?api_key=a5025e9c048c765a07b555d910269819&query=cat
 
-export function fetchMoviesByQuery({ query }) {
+export function fetchMoviesByQuery(query) {
   return fetchWithErrorHandling(
     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`,
   );
