@@ -13,10 +13,10 @@ function App() {
         <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path="/movies">
+        <Route path="/movies" exact>
           <MoviesPage />
         </Route>
-        <Route path="/movies/:movieId">
+        <Route path="/movies/:movieId" exact>
           <MovieDetailsPage />
         </Route>
       </Switch>
