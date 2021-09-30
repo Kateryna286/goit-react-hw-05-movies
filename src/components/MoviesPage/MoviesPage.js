@@ -6,13 +6,11 @@ import Searchbar from '../Searchbar/Searchbar';
 export default function MoviesPage() {
   const history = useHistory();
   const location = useLocation();
-  console.log('History:', history);
-  console.log('Location:', location);
+  console.log('Location moviePage:', location);
 
   const [movies, setMovies] = useState(null);
 
   const query = new URLSearchParams(location.search).get('query');
-  console.log(query);
 
   const formSubmitHandler = query => {
     history.push({
@@ -39,7 +37,14 @@ export default function MoviesPage() {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
+              <Link
+                to={{
+                  pathname: `/movies/${movie.id}`,
+                  state: { from: location },
+                }}
+              >
+                {movie.original_title}
+              </Link>
             </li>
           ))}
         </ul>

@@ -5,6 +5,7 @@ import {
   useRouteMatch,
   Route,
   useHistory,
+  useLocation,
 } from 'react-router-dom';
 import * as moviesAPI from '../servises/movies-api';
 import Cast from '../Cast/Cast';
@@ -15,6 +16,9 @@ export default function MovieDetailsPage() {
   const { url } = useRouteMatch();
 
   const history = useHistory();
+  console.log('History movieDetailPage:', history);
+  const location = useLocation();
+  console.log('Location movieDetailPage:', location);
 
   const [movie, setMovie] = useState(null);
 
@@ -22,13 +26,13 @@ export default function MovieDetailsPage() {
     moviesAPI.fetchMoviesFullInfo(movieId).then(setMovie);
   }, [movieId]);
 
-  const handleGoBack = () => {
-    history.goBack();
+  const onGoBack = () => {
+    history.push(location?.state?.from ?? '/5');
   };
 
   return (
     <div>
-      <button type="button" onClick={handleGoBack}>
+      <button type="button" onClick={onGoBack}>
         Go back
       </button>
 
@@ -59,10 +63,24 @@ export default function MovieDetailsPage() {
         <p>Additional information</p>
         <ul>
           <li>
-            <NavLink to={`${url}/cast`}>Cast</NavLink>
+            <NavLink
+              to={{
+                pathname: `${url}/cast`,
+                state: { from: history.location.state.from },
+              }}
+            >
+              Cast
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+            <NavLink
+              to={{
+                pathname: `${url}/reviews`,
+                state: { from: history.location.state.from },
+              }}
+            >
+              Reviews
+            </NavLink>
           </li>
         </ul>
       </div>
