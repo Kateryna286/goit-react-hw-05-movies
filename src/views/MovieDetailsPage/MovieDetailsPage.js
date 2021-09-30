@@ -84,12 +84,19 @@ export default function MovieDetailsPage() {
               <div className={styles.paragraph}>
                 <span className={styles.text}>Overview:</span> {movie.overview}
               </div>
-              <ul className={styles.list}>
-                <span className={styles.text}>Genres:</span>
-                {movie.genres.map(genre => (
-                  <li key={genre.name}>{genre.name}</li>
-                ))}
-              </ul>
+              {movie.genres.length > 0 ? (
+                <ul className={styles.list}>
+                  <span className={styles.text}>Genres:</span>
+                  {movie.genres.map(genre => (
+                    <li key={genre.name}>{genre.name}</li>
+                  ))}
+                </ul>
+              ) : (
+                <div>
+                  <span className={styles.text}>Genres:</span>No info about
+                  genres
+                </div>
+              )}
             </div>
           </div>
           <div className={styles.additionalInfo}>
