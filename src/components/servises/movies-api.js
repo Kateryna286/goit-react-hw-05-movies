@@ -3,7 +3,9 @@ const API_KEY = 'a5025e9c048c765a07b555d910269819';
 
 async function fetchWithErrorHandling(url = '') {
   const response = await fetch(url);
-  return response.json();
+  return response.ok
+    ? await response.json()
+    : Promise.reject(new Error('Not found'));
 }
 
 // список самых популярных фильмов на сегодня для создания коллекции на главной странице

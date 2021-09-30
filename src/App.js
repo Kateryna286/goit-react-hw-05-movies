@@ -1,10 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
 import AppBar from './components/AppBar/AppBar';
-//import HomePage from './components/HomePage/HomePage';
-//import MoviesPage from './components/MoviesPage/MoviesPage';
-//import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
+import Loader from 'react-loader-spinner';
 
 const MoviesPage = lazy(() =>
   import(
@@ -26,7 +23,12 @@ function App() {
   return (
     <div className="App">
       <AppBar />
-      <Suspense fallback={<h1>ЗАГРУЖАЕМ...</h1>}>
+
+      <Suspense
+        fallback={
+          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+        }
+      >
         <Switch>
           <Route path="/" exact>
             <HomePage />
@@ -36,6 +38,9 @@ function App() {
           </Route>
           <Route path="/movies/:movieId">
             <MovieDetailsPage />
+          </Route>
+          <Route>
+            <HomePage />
           </Route>
         </Switch>
       </Suspense>
