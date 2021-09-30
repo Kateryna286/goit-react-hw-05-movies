@@ -32,30 +32,34 @@ export default function Cast({ movieId }) {
       {status === 'rejected' && <div>UPS! {error}</div>}
       {status === 'resolved' && (
         <ul className={styles.list}>
-          {cast.map(actor => (
-            <li key={actor.id} className={styles.listItem}>
-              {actor.profile_path ? (
-                <img
-                  src={`${BASE_IMG_URL}${actor.profile_path}`}
-                  alt={actor.name}
-                  height="200px"
-                />
-              ) : (
-                <img
-                  src="http://dummyimage.com/133x200/99cccc.jpg&text=No+photo"
-                  alt={actor.name}
-                  height="200px"
-                />
-              )}
-              <div className={styles.description}>
-                <h3>{actor.name}</h3>
-                <div>
-                  <span className={styles.text}>Character:</span>{' '}
-                  {actor.character}
+          {cast.length > 0 ? (
+            cast.map(actor => (
+              <li key={actor.id} className={styles.listItem}>
+                {actor.profile_path ? (
+                  <img
+                    src={`${BASE_IMG_URL}${actor.profile_path}`}
+                    alt={actor.name}
+                    height="200px"
+                  />
+                ) : (
+                  <img
+                    src="http://dummyimage.com/133x200/99cccc.jpg&text=No+photo"
+                    alt={actor.name}
+                    height="200px"
+                  />
+                )}
+                <div className={styles.description}>
+                  <h3>{actor.name}</h3>
+                  <div>
+                    <span className={styles.text}>Character:</span>{' '}
+                    {actor.character}
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))
+          ) : (
+            <div>We don't have any actor for this movie</div>
+          )}
         </ul>
       )}
     </>
