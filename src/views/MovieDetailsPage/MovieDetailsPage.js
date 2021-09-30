@@ -60,11 +60,18 @@ export default function MovieDetailsPage() {
       {status === 'resolved' && (
         <div>
           <div className={styles.movieFullInfo}>
-            <img
-              src={`${BASE_IMG_URL}${movie.poster_path}`}
-              alt={movie.original_title}
-              height="300px"
-            />
+            {movie.poster_path ? (
+              <img
+                src={`${BASE_IMG_URL}${movie.poster_path}`}
+                alt={movie.original_title}
+                height="300px"
+              />
+            ) : (
+              <img
+                src="http://dummyimage.com/200x300/99cccc.jpg&text=No+photo"
+                alt={movie.original_title}
+              />
+            )}
             <div>
               <h2 className={styles.header}>
                 {movie.original_title} ({movie.release_date.slice(0, 4)})
