@@ -1,0 +1,39 @@
+.list {
+  padding-left: 0;
+}
+
+.item {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+
+.item:link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 18px;
+}
+
+.item:visited {
+  color: #2196f3;
+}
+
+.item:focus {
+  border-bottom: 1px solid;
+}
+
+.item:hover {
+  border-bottom: 1px solid;
+}
+
+.activeItem {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2196f3;
+  font-size: 18px;
+}
