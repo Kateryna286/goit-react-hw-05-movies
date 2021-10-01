@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   useParams,
   NavLink,
@@ -10,9 +10,17 @@ import {
 import { BiArrowBack } from 'react-icons/bi';
 import * as moviesAPI from '../../servises/movies-api';
 import Loader from 'react-loader-spinner';
-import Cast from '../Cast/Cast';
-import Reviews from '../Reviews/Reviews';
+//import Cast from '../Cast/Cast';
+// import Reviews from '../Reviews/Reviews';
 import styles from './MovieDetalspage.module.css';
+
+const Cast = lazy(() =>
+  import('../Cast/Cast.js' /* webpackChunkName: "cast" */),
+);
+
+const Reviews = lazy(() =>
+  import('../Reviews/Reviews' /* webpackChunkName: "reviews" */),
+);
 
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -127,10 +135,16 @@ export default function MovieDetailsPage() {
         </div>
       )}
 
-      <Route path="/movies/:movieId/cast">{<Cast movieId={movieId} />}</Route>
-      <Route path="/movies/:movieId/reviews">
-        {<Reviews movieId={movieId} />}
-      </Route>
+      <Suspense
+        fallback={
+          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+        }
+      >
+        <Route path="/movies/:movieId/cast">{<Cast movieId={movieId} />}</Route>
+        <Route path="/movies/:movieId/reviews">
+          {<Reviews movieId={movieId} />}
+        </Route>
+      </Suspense>
     </>
   );
 }
