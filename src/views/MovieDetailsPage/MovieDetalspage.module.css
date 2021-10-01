@@ -63,3 +63,8 @@
   composes: link;
   color: #2196f3;
 }
+
+.error {
+  margin-top: 60px;
+  text-align: center;
+}

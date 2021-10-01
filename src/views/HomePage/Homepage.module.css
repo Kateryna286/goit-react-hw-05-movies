@@ -42,3 +42,8 @@
   color: #2196f3;
   font-size: 18px;
 }
+
+.error {
+  margin-top: 60px;
+  text-align: center;
+}

@@ -11,3 +11,8 @@
 .text {
   font-weight: 600;
 }
+
+.error {
+  margin-top: 60px;
+  text-align: center;
+}
