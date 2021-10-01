@@ -10,8 +10,6 @@ import {
 import { BiArrowBack } from 'react-icons/bi';
 import * as moviesAPI from '../../servises/movies-api';
 import Loader from 'react-loader-spinner';
-//import Cast from '../Cast/Cast';
-// import Reviews from '../Reviews/Reviews';
 import styles from './MovieDetalspage.module.css';
 
 const Cast = lazy(() =>
@@ -63,7 +61,9 @@ export default function MovieDetailsPage() {
       {status === 'pending' && (
         <Loader type="Oval" color="#00BFFF" height={40} width={40} />
       )}
-      {status === 'reject' && <div>UPS! {error.message}</div>}
+      {status === 'reject' && (
+        <div className={styles.error}>UPS! {error.message}</div>
+      )}
 
       {status === 'resolved' && (
         <div>

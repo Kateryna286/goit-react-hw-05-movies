@@ -30,3 +30,8 @@ ul {
 h2 {
   margin: 0;
 }
+
+.error {
+  margin-top: 60px;
+  text-align: center;
+}

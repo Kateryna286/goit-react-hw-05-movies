@@ -37,3 +37,9 @@
   color: #2196f3;
   font-size: 18px;
 }
+
+.error {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}

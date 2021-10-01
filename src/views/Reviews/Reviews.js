@@ -27,7 +27,9 @@ export default function Reviews({ movieId }) {
       {status === 'pending' && (
         <Loader type="Oval" color="#00BFFF" height={40} width={40} />
       )}
-      {status === 'rejected' && <div>UPS! {error}</div>}
+      {status === 'rejected' && (
+        <div className={styles.error}>UPS! {error}</div>
+      )}
       {status === 'resolved' && (
         <ul>
           {reviews.length > 0 ? (
